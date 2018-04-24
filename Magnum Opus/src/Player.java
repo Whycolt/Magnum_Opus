@@ -1,7 +1,8 @@
 
 public class Player extends Block{
 
-	public Player(){
+	public Player(Coordinates c){
+		super(c);
 		this.type = 3;
 	}
 	
