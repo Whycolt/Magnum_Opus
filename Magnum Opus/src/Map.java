@@ -77,11 +77,15 @@ public class Map{
 		else{
 			Block start = this.getBlock(cstart);
 			Block end = this.getBlock(new Coordinates(x,y,z));
+			Block under = this.getBlock(new Coordinates(x,y,z-1));
 			if (start.isEmpty()){
 				System.out.println("moveBlock: start block is empty");
 			}
-			if  (!end.isEmpty()){
+			if (!end.isEmpty()){
 				System.out.println("moveBlock: target block is not empty");
+			}
+			if (!under.isWalkable()){
+				System.out.println("moveBlock: No place to walk on");
 			}
 			else{
 				Block temp = end.clone(cstart.x, cstart.y, cstart.z);

@@ -22,15 +22,16 @@ public class Battle{
 		c.setVisible(true);
 		Game_Controller con = new Game_Controller(this);
 		c.addKeyListener(con);
-		Map map = new Map(20,20,1);
+		Map map = new Map(5,5,2);
+		Map_Gen.stanGen(map);
 		Image i = new Image();
 		i.LoadAll();
 		f = new Field(map,i);
 		c.add(f);
 		f.repaint();
-		Block player = new Player(new Coordinates(0,0,0));
+		Block player = new Player(new Coordinates(0,0,1));
 		map.addBlock(player);
-		map.moveBlock(player.getco(), 4,4,0);
+		map.moveBlock(player.getco(), 4,4,1);
 		this.in = -1;
 		while (in != 8){
 			if (in == 0){

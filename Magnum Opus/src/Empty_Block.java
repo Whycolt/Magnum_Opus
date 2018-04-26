@@ -5,8 +5,4 @@ public class Empty_Block extends Block{
 		super(c);
 		this.type = 0; 
 	}
-	
-	public String toString(){
-		return "+";
-	}
 }
