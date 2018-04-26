@@ -22,7 +22,7 @@ public class Battle{
 		c.setVisible(true);
 		Game_Controller con = new Game_Controller(this);
 		c.addKeyListener(con);
-		Map map = new Map(10,10,2);
+		Map map = new Map(10,10,3);
 		Map_Gen.stanGen(map);
 		Image i = new Image();
 		i.LoadAll();
@@ -32,7 +32,7 @@ public class Battle{
 		Block player = new Player(new Coordinates(0,0,1));
 		map.addBlock(player);
 		map.moveBlock(player.getco(), 2,2,1);
-		map.addBlock(new Space(new Coordinates(0,0,1)));
+		map.addBlock(new Ladder(new Coordinates(0,0,1)));
 		map.addBlock(new Space(new Coordinates(1,0,1)));
 		map.addBlock(new Space(new Coordinates(2,0,1)));
 		map.addBlock(new Space(new Coordinates(3,0,1)));

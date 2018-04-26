@@ -77,7 +77,13 @@ public class Map{
 		else{
 			Block start = this.getBlock(cstart);
 			Block end = this.getBlock(new Coordinates(x,y,z));
+			if (end.isClimbable()){
+				return moveBlock(cstart, x, y, z+1);
+			}
 			Block under = this.getBlock(new Coordinates(x,y,z-1));
+			if (this.getBlock(new Coordinates(cstart.x,cstart.y,cstart.z-1)).isClimbable() && under.isEmpty()){
+				return moveBlock(cstart,x,y,z-1);
+			}
 			if (start.isEmpty()){
 				System.out.println("moveBlock: start block is empty");
 			}

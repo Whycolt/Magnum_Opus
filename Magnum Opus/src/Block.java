@@ -5,13 +5,14 @@ public class Block {
 	//type -> 0 = empty, 1 = solid, 2 = enemy, 3 = player, 4 = door. 
 	
 	public int x,y,z;
-	public boolean walkable;
+	public boolean walkable, climbable;
 	
 	public Block(Coordinates c){
 		this.x = c.x;
 		this.y = c.y;
 		this.z = c.z;
 		walkable = false;
+		climbable = false;
 	}
 	
 	public Coordinates getco(){
@@ -24,6 +25,10 @@ public class Block {
 	
 	public boolean isWalkable(){
 		return this.walkable;
+	}
+	
+	public boolean isClimbable(){
+		return this.climbable;
 	}
 	
 	public boolean isEmpty(){
