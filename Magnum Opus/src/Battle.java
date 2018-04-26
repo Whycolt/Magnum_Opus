@@ -5,10 +5,8 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 
 public class Battle{
 
@@ -16,26 +14,25 @@ public class Battle{
 	
 	public Field f;
 	public Container c;
+	public int in;
 	
 	public Battle(Frame c){
 		this.c = c;
+		c.setFocusable(true);
 		c.setVisible(true);
+		Game_Controller con = new Game_Controller(this);
+		c.addKeyListener(con);
 		Map map = new Map(20,20,1);
 		Image i = new Image();
 		i.LoadAll();
 		f = new Field(map,i);
 		c.add(f);
 		f.repaint();
-		input.nextLine();
 		Block player = new Player(new Coordinates(0,0,0));
 		map.addBlock(player);
 		map.moveBlock(player.getco(), 4,4,0);
-		int in = -1;
+		this.in = -1;
 		while (in != 8){
-			in = input.nextInt();
-			System.out.print(player.x);
-			System.out.print(player.y);
-			System.out.println(player.z);
 			if (in == 0){
 				map.moveBlock(player.getco(),player.x-1,player.y,player.z);
 			}
@@ -60,6 +57,7 @@ public class Battle{
 			if (in == 7){
 				f.viewY += -100;;
 			}	
+			in = -1;
 			f.repaint();
 		}
 	}
