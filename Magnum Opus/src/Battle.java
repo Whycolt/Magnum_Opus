@@ -31,7 +31,10 @@ public class Battle{
 		f.repaint();
 		Block player = new Player(new Coordinates(0,0,1));
 		map.addBlock(player);
-		map.moveBlock(player.getco(), 4,4,1);
+		map.moveBlock(player.getco(), 2,2,1);
+		map.addBlock(new Space(new Coordinates(0,0,1)));
+		map.addBlock(new Space(new Coordinates(3,2,1)));
+		map.addBlock(new Space(new Coordinates(4,4,1)));
 		this.in = -1;
 		while (in != 8){
 			if (in == 0){

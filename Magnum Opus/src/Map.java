@@ -81,10 +81,10 @@ public class Map{
 			if (start.isEmpty()){
 				System.out.println("moveBlock: start block is empty");
 			}
-			if (!end.isEmpty()){
+			else if (!end.isEmpty()){
 				System.out.println("moveBlock: target block is not empty");
 			}
-			if (!under.isWalkable()){
+			else if (!under.isWalkable()){
 				System.out.println("moveBlock: No place to walk on");
 			}
 			else{
@@ -97,7 +97,6 @@ public class Map{
 				return true;
 			}	
 		}
-		
 		return false;
 	}
 	
