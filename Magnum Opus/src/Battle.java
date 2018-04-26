@@ -14,7 +14,7 @@ public class Battle{
 	
 	public Field f;
 	public Container c;
-	public int in;
+	public int in, cont;
 	
 	public Battle(Frame c){
 		this.c = c;
@@ -34,6 +34,7 @@ public class Battle{
 		map.moveBlock(player.getco(), 2,2,1);
 		map.addBlock(new Ladder(new Coordinates(0,0,1)));
 		map.addBlock(new Space(new Coordinates(1,0,1)));
+		map.addBlock(new Space(new Coordinates(3,1,1)));
 		map.addBlock(new Space(new Coordinates(2,0,1)));
 		map.addBlock(new Space(new Coordinates(3,0,1)));
 		map.addBlock(new Space(new Coordinates(4,0,1)));
@@ -42,21 +43,22 @@ public class Battle{
 		map.addBlock(new Space(new Coordinates(7,0,1)));
 		map.addBlock(new Space(new Coordinates(8,0,1)));
 		map.addBlock(new Space(new Coordinates(9,0,1)));
-		map.addBlock(new Space(new Coordinates(3,2,1)));
+		map.addBlock(new Door(new Coordinates(3,2,1)));
 		map.addBlock(new Space(new Coordinates(4,4,1)));
 		this.in = -1;
-		while (in != 8){
+		this.cont = 0;
+		while (cont != 2){
 			if (in == 0){
-				map.moveBlock(player.getco(),player.x-1,player.y,player.z);
+				cont = map.moveBlock(player.getco(),player.x-1,player.y,player.z);
 			}
 			if (in == 1){
-				map.moveBlock(player.getco(),player.x+1,player.y,player.z);
+				cont = map.moveBlock(player.getco(),player.x+1,player.y,player.z);
 			}
 			if (in == 2){
-				map.moveBlock(player.getco(),player.x,player.y-1,player.z);
+				cont = map.moveBlock(player.getco(),player.x,player.y-1,player.z);
 			}
 			if (in == 3){
-				map.moveBlock(player.getco(),player.x,player.y+1,player.z);
+				cont = map.moveBlock(player.getco(),player.x,player.y+1,player.z);
 			}
 			if (in == 4){
 				f.viewX += 100;

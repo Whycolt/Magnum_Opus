@@ -70,13 +70,16 @@ public class Map{
 	}
 	
 	//check if block is movable, then move block
-	public boolean moveBlock(Coordinates cstart, int x, int y, int z){
+	public int moveBlock(Coordinates cstart, int x, int y, int z){
 		if (x < 0 || x >= xMax || y < 0 || y >= yMax || z < 0 || z >= zMax){
 			System.out.println("Target space is out of bounds");
 		}
 		else{
 			Block start = this.getBlock(cstart);
 			Block end = this.getBlock(new Coordinates(x,y,z));
+			if (end.getType() == 4){
+				return 2;
+			}
 			if (end.isClimbable()){
 				return moveBlock(cstart, x, y, z+1);
 			}
@@ -100,10 +103,10 @@ public class Map{
 				start.z = z;
 				this.addBlock(start);
 				this.addBlock(temp);
-				return true;
+				return 0;
 			}	
 		}
-		return false;
+		return 1;
 	}
 	
 	//Replace block at x,y,z with new block
