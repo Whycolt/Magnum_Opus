@@ -8,16 +8,16 @@ public class Map{
 	
 	//constructor
 	public Map(int xSize, int ySize, int zSize){
-		this.xMax = xSize;
-		this.yMax = ySize;
-		this.zMax = zSize;
-		this.layout = new ArrayList<ArrayList<ArrayList<Block>>>(xMax);
+		xMax = xSize;
+		yMax = ySize;
+		zMax = zSize;
+		layout = new ArrayList<ArrayList<ArrayList<Block>>>(xMax);
 		for(int x = 0; x < xMax; x++){
-			this.layout.add(new ArrayList<ArrayList<Block>>(yMax));
+			layout.add(new ArrayList<ArrayList<Block>>(yMax));
 			for(int y = 0; y < yMax; y++){
-				this.layout.get(x).add(new ArrayList<Block>(zMax));
+				layout.get(x).add(new ArrayList<Block>(zMax));
 				for(int z = 0; z < zMax; z++){
-					this.layout.get(x).get(y).add(new Empty_Block(new Coordinates(x,y,z)));
+					layout.get(x).get(y).add(new Empty_Block(new Coordinates(x,y,z)));
 				}
 			}
 		}
@@ -25,47 +25,47 @@ public class Map{
 	
 	//Get max x
 	public int getX(){
-		return this.xMax;
+		return xMax;
 	}
 	
 	//Get max y
 	public int getY(){
-		return this.yMax;
+		return yMax;
 	}
 	
 	//Get max z
 	public int getZ(){
-		return this.zMax;
+		return zMax;
 	}
 	
 	//get block by location
 	public Block getBlock(Coordinates c){
-		if (c.x >= this.xMax+1){
+		if (c.x >= xMax+1){
 			System.out.println("getBlock: x >= xMax");
 		}
-		if (c.y >= this.yMax+1){
+		if (c.y >= yMax+1){
 			System.out.println("getBlock: y >= yMax");
 		}
-		if (c.z >= this.zMax+1){
+		if (c.z >= zMax+1){
 			System.out.println("getBlock: z >= zMax");
 		}
 		else
-			return this.layout.get(c.x).get(c.y).get(c.z);
+			return layout.get(c.x).get(c.y).get(c.z);
 		return new Empty_Block(new Coordinates(-1,-1,-1));
 	}
 	
 	public Block getBlock(int x, int y, int z){
-		if (x >= this.xMax+1){
+		if (x >= xMax+1){
 			System.out.println("getBlock: x >= xMax");
 		}
-		if (y >= this.yMax+1){
+		if (y >= yMax+1){
 			System.out.println("getBlock: y >= yMax");
 		}
-		if (z >= this.zMax+1){
+		if (z >= zMax+1){
 			System.out.println("getBlock: z >= zMax");
 		}
 		else
-			return this.layout.get(x).get(y).get(z);
+			return layout.get(x).get(y).get(z);
 		return new Empty_Block(new Coordinates(-1,1,-1));
 	}
 	
@@ -75,16 +75,16 @@ public class Map{
 			System.out.println("Target space is out of bounds");
 		}
 		else{
-			Block start = this.getBlock(cstart);
-			Block end = this.getBlock(new Coordinates(x,y,z));
+			Block start = getBlock(cstart);
+			Block end = getBlock(new Coordinates(x,y,z));
 			if (end.getType() == 4){
 				return 2;
 			}
 			if (end.isClimbable()){
 				return moveBlock(cstart, x, y, z+1);
 			}
-			Block under = this.getBlock(new Coordinates(x,y,z-1));
-			if (this.getBlock(new Coordinates(cstart.x,cstart.y,cstart.z-1)).isClimbable() && under.isEmpty()){
+			Block under = getBlock(new Coordinates(x,y,z-1));
+			if (getBlock(new Coordinates(cstart.x,cstart.y,cstart.z-1)).isClimbable() && under.isEmpty()){
 				return moveBlock(cstart,x,y,z-1);
 			}
 			if (start.isEmpty()){
@@ -101,8 +101,8 @@ public class Map{
 				start.x = x;
 				start.y = y;
 				start.z = z;
-				this.addBlock(start);
-				this.addBlock(temp);
+				addBlock(start);
+				addBlock(temp);
 				return 0;
 			}	
 		}
@@ -111,7 +111,7 @@ public class Map{
 	
 	//Replace block at x,y,z with new block
 	public void addBlock(Block block){
-		this.layout.get(block.x).get(block.y).remove(block.z);
-		this.layout.get(block.x).get(block.y).add(block.z, block);
+		layout.get(block.x).get(block.y).remove(block.z);
+		layout.get(block.x).get(block.y).add(block.z, block);
 	}
 }

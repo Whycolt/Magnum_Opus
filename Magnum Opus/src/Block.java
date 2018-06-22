@@ -8,43 +8,43 @@ public class Block {
 	public boolean walkable, climbable;
 	
 	public Block(Coordinates c){
-		this.x = c.x;
-		this.y = c.y;
-		this.z = c.z;
+		x = c.x;
+		y = c.y;
+		z = c.z;
 		walkable = false;
 		climbable = false;
 	}
 	
 	public Coordinates getco(){
-		return new  Coordinates(this.x, this.y, this.z);
+		return new  Coordinates(x, y, z);
 	}
 	
 	public Block(int type){
-		this.type = type;
+		type = type;
 	}
 	
 	public boolean isWalkable(){
-		return this.walkable;
+		return walkable;
 	}
 	
 	public boolean isClimbable(){
-		return this.climbable;
+		return climbable;
 	}
 	
 	public boolean isEmpty(){
-		return this.type == 0;
+		return type == 0;
 	}
 	
 	public int getType(){
-		return this.type;
+		return type;
 	}
 	
 	public Block clone(int x, int y, int z){
-		if (this.type == 0)
+		if (type == 0)
 			return new Empty_Block(new Coordinates(x, y, z));
-		if (this.type == 1)
+		if (type == 1)
 			return new Space(new Coordinates(x, y, z));
-		if (this.type == 2)
+		if (type == 2)
 			return new Player(new Coordinates(x, y, z));
 		return new Block(new Coordinates(x, y, z));
 	}

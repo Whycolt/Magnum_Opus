@@ -10,18 +10,17 @@ import javax.swing.*;
 
 public class Battle{
 
-	static Scanner input = new Scanner(System.in);  // Reading from System.in
-	
 	public Field f;
 	public Container c;
 	public int in, cont;
 	
 	public Battle(Frame c){
-		this.c = c;
+		c = c;
 		c.setFocusable(true);
 		c.setVisible(true);
 		Game_Controller con = new Game_Controller(this);
 		c.addKeyListener(con);
+		c.addMouseListener(con);
 		Map map = new Map(10,10,3);
 		Map_Gen.stanGen(map);
 		Image i = new Image();
@@ -33,6 +32,7 @@ public class Battle{
 		map.addBlock(player);
 		map.moveBlock(player.getco(), 2,2,1);
 		map.addBlock(new Ladder(new Coordinates(0,0,1)));
+		map.addBlock(new Ladder(new Coordinates(7,7,1)));
 		map.addBlock(new Space(new Coordinates(1,0,1)));
 		map.addBlock(new Space(new Coordinates(3,1,1)));
 		map.addBlock(new Space(new Coordinates(2,0,1)));
@@ -45,8 +45,8 @@ public class Battle{
 		map.addBlock(new Space(new Coordinates(9,0,1)));
 		map.addBlock(new Door(new Coordinates(3,2,1)));
 		map.addBlock(new Space(new Coordinates(4,4,1)));
-		this.in = -1;
-		this.cont = 0;
+		in = -1;
+		cont = 0;
 		while (cont != 2){
 			if (in == 0){
 				cont = map.moveBlock(player.getco(),player.x-1,player.y,player.z);
