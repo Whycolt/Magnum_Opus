@@ -1,4 +1,4 @@
-public class Main{
+public class Magnum_Opus{
 	
 	public static void main(String[] args) {
 		// calling frame and game class
